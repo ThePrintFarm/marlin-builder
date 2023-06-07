@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: Generate-build-list
-        run: for i in `ls`; do test -d ${i} && echo $i >> build-list; done
+        run: for i in `ls`; do test -d $i && echo $i >> build-list; done
       - id: Build-things
         run: cat build-list
