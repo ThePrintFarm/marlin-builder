@@ -2,14 +2,14 @@ name: Build Marlin Firmwares
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 jobs:
   build-firmwares:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - id: Generate build list
+      - id: Generate-build-list
         run: for i in `ls`; do test -d ${i} && echo $i >> build-list; done
-      - id: Build things
+      - id: Build-things
         run: cat build-list
