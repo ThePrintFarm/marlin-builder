@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: Generate-build-list
-        run: for i in `ls`; do test -d $i && echo $i; done
+        run: for i in *; do test -d $i && echo $i; done
