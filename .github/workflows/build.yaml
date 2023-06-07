@@ -2,7 +2,7 @@ name: Build Marlin Firmwares
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   build-firmwares:
