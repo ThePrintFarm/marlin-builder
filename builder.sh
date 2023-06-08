@@ -1,7 +1,6 @@
 #!/bin/sh
 
-echo $(which pip3)
-echo $(which gcc)
-for cfg in configs/*; do
+test -z "$(which platformio 2>/dev/null)" && $(which pip3) install platformio
+for cfg in $(ls configs/); do
 	echo ${cfg}
 done
