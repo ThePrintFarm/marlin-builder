@@ -9,15 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
-        with:
-          repository: MarlinFirmware/Marlin
-          ref: bugfix-2.0.x
-          path: marlin-bugfix-2.0.x
-      - uses: actions/checkout@v3
-        with:
-          repository: MarlinFirmware/Marlin
-          ref: bugfix-2.1.x
-          path: marlin-bugfix-2.1.x
       - id: Generate-build-list
         run: /bin/sh ./builder.sh
