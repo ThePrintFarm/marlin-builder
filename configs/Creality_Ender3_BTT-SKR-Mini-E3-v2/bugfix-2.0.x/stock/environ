@@ -1,3 +1,2 @@
 build_env="-e STM32F103RC_btt_USB"
 build_obj=".pio/build/STM32F103RC_btt_USB/firmware.bin"
-build_tag="stock"
