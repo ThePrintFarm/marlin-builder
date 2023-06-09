@@ -5,13 +5,10 @@ on:
     branches: ["main"]
 
 jobs:
-  build-prep:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
   Kingroon-kp3s-pro:
     runs-on: ubuntu-latest
     needs: build-prep
     steps:
+      - uses: actions/checkout@v3
       - id: kingroon-kp3s-pro
         run: /bin/sh ./builder.sh Kingroon_KP3S_PRO
