@@ -10,4 +10,5 @@ jobs:
   build:
     uses: ./.github/workflows/build.yaml
     with:
+      prefix: kingroon
       parent: Kingroon_KP3S_PRO

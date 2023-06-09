@@ -10,4 +10,5 @@ jobs:
   build:
     uses: ./.github/workflows/build.yaml
     with:
+      prefix: creality
       parent: Creality_Ender3_BTT-SKR-Mini-E3-v2

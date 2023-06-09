@@ -3,6 +3,11 @@ name: Build Marlin Firmwares
 on:
   workflow_call:
     inputs:
+      prefix:
+        description: tag prefix to use
+        required: true
+        type: string
+        default: ""
       parent:
         description: The top level (relative to configs/) directory to build.
         required: true
@@ -19,13 +24,11 @@ jobs:
         run: echo "tag=$(date +%s)" >> "$GITHUB_OUTPUT"
       - name: Build all flavors
         run: /bin/sh ./builder.sh ${{ inputs.parent }}
-        env:
-          REPO_TAG: ${{ steps.date.outpus.tag }}
       - name: create tag
         id: tag
         uses: rickstaa/action-create-tag@v1
         with:
-          tag: ${{ steps.date.outputs.tag }}
+          tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
           tag_exists_error: false
           force_push_tag: true
       - uses: marvinpinto/action-automatic-releases@latest
