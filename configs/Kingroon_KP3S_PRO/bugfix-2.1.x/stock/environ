@@ -1,0 +1,3 @@
+build_env="-e mks_robin_nano_v1v2"
+build_obj=".pio/build/mks_robin_nano_v1v2/Robin_nano35.bin"
+build_tag="stock"
