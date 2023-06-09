@@ -5,9 +5,13 @@ on:
     branches: ["main"]
 
 jobs:
-  build-firmwares:
+  build-prep:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - id: Generate-build-list
-        run: /bin/sh ./builder.sh
+  Kingroon-kp3s-pro:
+    runs-on: ubuntu-latest
+    needs: build-prep
+    steps:
+      - id: Firmware builder
+        run: /bin/sh ./builder.sh Kingroon_KP3S_PRO
