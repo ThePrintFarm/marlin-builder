@@ -1,0 +1,2 @@
+date_stamp=`date +%Y%m%d`
+build_obj=`ls .pio/build/STM32F103RE_creality/|grep firmware-${date_stamp}`

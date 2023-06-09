@@ -1,29 +1,58 @@
 #!/bin/sh
 
+set -e
+
 BASE=${PWD}
-GITHUB_URL=https://github.com/MarlinFirmware/Marlin
+MARLIN_REPO=https://github.com/MarlinFirmware/Marlin
+BUILD_DIR="${PWD}/marlin-build-dir"
 test -z "$(which platformio 2>/dev/null)" && $(which pip3) install platformio
 
-for cfg in $(ls configs/); do
-    if test "${cfg}" = "${1}"; then
-	      echo Configuring ${cfg}
-        cd configs/${cfg}
-        for branch in $(ls); do
-            cd ${branch}
-            for flavor in $(ls); do
-                echo Building for ${cfg}-${branch}-${flavor}
-                git clone -b ${branch} ${GITHUB_URL} current-build
-                test -e ${flavor}/platformio.ini && \
-                    rm -fv current-build/platformio.ini && \
-                    cp -v ${flavor}/platformio.ini current-build/
-                cp -v ${flavor}/*.h current-build/Marlin/
-	              test -e ${flavor}/environ && . ${flavor}/environ
-                cd current-build
-                platformio run ${build_env} && \
-                    test -e ${build_obj} && mv -v ${build_obj} ${BASE}/${cfg}__${branch}__${flavor}__$(basename ${build_obj})
-                cd ../ && rm -rf current-build
+test ! -d ${BUILD_DIR} && git clone ${MARLIN_REPO} ${BUILD_DIR}
+cd configs/
+for vendor in $(ls ${BASE}/configs/); do
+    if test "${vendor}" = "${1}"; then
+        cd ${BASE}/configs/${vendor}
+        for model in $(ls); do
+            cd ${model}
+            for board in $(ls); do
+                cd ${board}
+                for branch in $(ls); do
+                    cd ${branch}
+                    for flavor in $(ls); do
+                        build_obj=""
+                        build_env=""
+                        build_out="${vendor}__${model}__${board}__${branch}__${flavor}"
+                        trail="${BASE}/configs/${vendor}/${model}/${board}/${branch}/${flavor}"
+                        echo "Building for: ${build_out}"
+                        cd ${BUILD_DIR}
+                        git stash && git checkout ${branch} && git pull
+                        if test -e ${trail}/platformio.ini; then
+                            rm -fv ${BUILD_DIR}/platformio.ini
+                            cp -v ${trail}/platformio.ini ${BUILD_DIR}/
+                        fi
+                        cp -v ${trail}/*.h ${BUILD_DIR}/Marlin/
+                        test -e ${trail}/inputs && . ${trail}/inputs
+                        test -d ${trail}/ini && cp -av ${trail}/ini/* ${BUILD_DIR}/ini/
+                        if test -z "${build_obj}"; then
+                            # this is kind of brittle
+                            set -x
+                            build_obj=$(platformio run ${build_env}|tee|grep -e '^Building .pio.*$'|awk '{print $2}')
+                            set +x
+                        else
+                            platformio run ${build_env}
+                        fi
+                        echo "DEBUG: ${build_obj}"
+                        mv -v ${build_obj} ${BASE}/${build_out}__$(basename ${build_obj})
+                        platformio run ${build_env} -t clean
+                        cd ${BASE}/configs/${vendor}/${model}/${board}/${branch}
+                    done
+                    cd ..
+                done
+                cd ..
             done
+            cd ..
         done
-        cd ../../
+        cd ..
     fi
 done
+rm -rf ${BUILD_DIR}

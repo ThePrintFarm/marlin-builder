@@ -1,0 +1,2 @@
+build_env="-e STM32F103RE_creality"
+build_obj="$(ls .pio/build/STM32F103RE_creality/firmware-$(date +%Y%m%d)-*)"
