@@ -1,4 +1,4 @@
-name: Build Kingroon Firmwares
+name: Build Creality firmwares
 
 on:
   schedule:
@@ -10,4 +10,4 @@ jobs:
   build:
     uses: ./.github/workflows/build.yaml
     with:
-      parent: Kingroon_KP3S_PRO
+      parent: Creality_Ender3_BTT-SKR-Mini-E3-v2
