@@ -14,8 +14,17 @@ jobs:
       - name: Get current date
         id: date
         run: echo "tag=$(date +%s)" >> "$GITHUB_OUTPUT"
-      - id: kingroon-kp3s-pro
+      - name: Build all flavors
         run: /bin/sh ./builder.sh Kingroon_KP3S_PRO
+        env:
+          REPO_TAG: ${{ steps.date.outpus.tag }}
+      - name: create tag
+        id: tag
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ steps.date.outputs.tag }}
+          tag_exists_error: false
+          force_push_tag: true
       - uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
