@@ -13,5 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-prep
     steps:
-      - id: Firmware builder
+      - id: kingroon-kp3s-pro
         run: /bin/sh ./builder.sh Kingroon_KP3S_PRO
