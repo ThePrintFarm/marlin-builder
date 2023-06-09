@@ -1,9 +1,9 @@
 #!/bin/sh
 
 BASE=${PWD}
+GITHUB_URL=https://github.com/MarlinFirmware/Marlin
 test -z "$(which platformio 2>/dev/null)" && $(which pip3) install platformio
 
-git clone --mirror https://github.com/MarlinFirmware/Marlin /tmp/marlin-mirror
 for cfg in $(ls configs/); do
     if test "${cfg}" = "${1}"; then
 	      echo Configuring ${cfg}
@@ -12,7 +12,7 @@ for cfg in $(ls configs/); do
             cd ${branch}
             for flavor in $(ls); do
                 echo Building for ${cfg}-${branch}-${flavor}
-                git clone -b ${branch} /tmp/marlin-mirror current-build
+                git clone -b ${branch} ${GITHUB_URL} current-build
                 test -e ${flavor}/platformio.ini && \
                     rm -fv current-build/platformio.ini && \
                     cp -v ${flavor}/platformio.ini current-build/
