@@ -17,7 +17,7 @@ for cfg in $(ls configs/); do
 	          test -e ${branch}/environ && . ${branch}/environ
             cd current-build
             platformio run ${build_env} && \
-                test -e ${build_obj} && mv -v ${build_obj} ${BASE}/${cfg}_${branch}_$(basename ${build_obj})
+                test -e ${build_obj} && mv -v ${build_obj} ${BASE}/${cfg}_${branch}_${build_tag}_$(basename ${build_obj})
             cd ../ && rm -rf current-build
         done
         cd ../../
