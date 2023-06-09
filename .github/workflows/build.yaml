@@ -1,13 +1,16 @@
 name: Build Marlin Firmwares
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
-  push:
-    branches: ["main"]
+  workflow_call:
+    inputs:
+      parent:
+        description: The top level (relative to configs/) directory to build.
+        required: true
+        type: string
+        default: ""
 
 jobs:
-  Kingroon-kp3s-pro:
+  build-marlin:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,7 +18,7 @@ jobs:
         id: date
         run: echo "tag=$(date +%s)" >> "$GITHUB_OUTPUT"
       - name: Build all flavors
-        run: /bin/sh ./builder.sh Kingroon_KP3S_PRO
+        run: /bin/sh ./builder.sh ${{ inputs.parent }}
         env:
           REPO_TAG: ${{ steps.date.outpus.tag }}
       - name: create tag
@@ -29,6 +32,6 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: ${{ steps.date.outputs.tag }}
-          title: Kingroon-KPS3-Pro
+          title: ${{ inputs.parent }}
           files: |
-            Kingroon*.bin
+            ${{ inputs.parent }}*.bin

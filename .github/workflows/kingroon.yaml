@@ -1,0 +1,13 @@
+name: Build Kingroon KP3S PRO Firmwares
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      parent: Kingroon_KP3S_PRO
