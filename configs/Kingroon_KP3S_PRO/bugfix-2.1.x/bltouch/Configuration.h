@@ -47,7 +47,7 @@
  * https://www.youtube.com/watch?v=s2ZiibBKVKI
  * un-comment USE_BLTOUCH if a BL-Touch is installed on your printer.
 */
-//#define USE_BLTOUCH
+#define USE_BLTOUCH
 
 /**
  * after the BL-Touch is installed the offset between the probe and nozzle
