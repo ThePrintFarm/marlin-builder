@@ -24,6 +24,10 @@ jobs:
         run: echo "tag=$(date +%s)" >> "$GITHUB_OUTPUT"
       - name: Build all flavors
         run: /bin/sh ./builder.sh ${{ inputs.parent }}
+
+    publish:
+      needs:
+        - build-marlin
       - name: create tag
         id: tag
         uses: rickstaa/action-create-tag@v1
