@@ -42,4 +42,4 @@ jobs:
           automatic_release_tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
           title: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
           files: |
-            ${{ inputs.parent }}*.bin
+            ${{ inputs.parent }}*
