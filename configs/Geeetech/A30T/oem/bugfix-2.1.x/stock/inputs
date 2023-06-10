@@ -1,0 +1,1 @@
+build_env="-e STM32F103VE"
