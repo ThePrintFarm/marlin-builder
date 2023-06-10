@@ -1,0 +1,15 @@
+name: Build Geeetech Firmwares
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - configs/Geeetech/**
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      prefix: geeetech
+      parent: Geeetech
