@@ -1,0 +1,2 @@
+build_env="-e melzi_optiboot_optimized"
+build_obj=".pio/build/melzi_optiboot_optimized/firmware.hex"
