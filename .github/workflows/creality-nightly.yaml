@@ -1,0 +1,12 @@
+name: Build Creality Nightlies
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      prefix: creality-nightly
+      parent: Creality

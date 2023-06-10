@@ -1,0 +1,12 @@
+name: Build Creality Weeklies
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      prefix: creality-weekly
+      parent: Creality
