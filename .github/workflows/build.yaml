@@ -28,17 +28,18 @@ jobs:
     publish:
       needs:
         - build-marlin
-      - name: create tag
-        id: tag
-        uses: rickstaa/action-create-tag@v1
-        with:
-          tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
-          tag_exists_error: false
-          force_push_tag: true
-      - uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
-          title: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
-          files: |
-            ${{ inputs.parent }}*.bin
+      steps:
+        - name: create tag
+          id: tag
+          uses: rickstaa/action-create-tag@v1
+          with:
+            tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
+            tag_exists_error: false
+            force_push_tag: true
+        - uses: marvinpinto/action-automatic-releases@latest
+          with:
+            repo_token: "${{ secrets.GITHUB_TOKEN }}"
+            automatic_release_tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
+            title: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
+            files: |
+              ${{ inputs.parent }}*.bin
