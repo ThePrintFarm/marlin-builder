@@ -10,8 +10,8 @@ on:
 
 jobs:
   build:
-    matrix:
-      strategy:
+    strategy:
+      matrix:
         parent:
           - Creality
         model:
