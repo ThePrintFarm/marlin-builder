@@ -10,7 +10,14 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        parent:
+          - Kingroon
+        model:
+          - KP3S-PRO
     uses: ./.github/workflows/build.yaml
     with:
       prefix: kingroon
-      parent: Kingroon
+      parent: ${{ matrix.parent }}
+      model: ${{ matrix.model }}
