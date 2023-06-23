@@ -13,6 +13,21 @@ on:
         required: true
         type: string
         default: ""
+      model:
+        description: The top level (relative to configs/<parent>) directory to build.
+        required: true
+        type: string
+        default: ""
+      board:
+        description: The top level (relative to configs/<parent>/<model>) directory to build.
+        required: true
+        type: string
+        default: ""
+      branch:
+        description: The top level (relative to configs/<parent>/<model>/<board>) directory to build.
+        required: true
+        type: string
+        default: ""
 
 jobs:
   build-marlin:
@@ -23,7 +38,7 @@ jobs:
         id: date
         run: echo "tag=$(date +%m%d%Y-%H%M%S)" >> "$GITHUB_OUTPUT"
       - name: Build all flavors
-        run: /bin/sh ./builder.sh ${{ inputs.parent }}
+        run: /bin/sh ./builder.sh ${{ inputs.parent }} ${{ inputs.model }} ${{ inputs.board }} ${{ inputs.branch }}
       - name: create tag
         id: tag
         uses: rickstaa/action-create-tag@v1
