@@ -15,10 +15,12 @@ RUN_BOARD="any"
 RUN_BRANCH="any"
 RUN_FLAVOR="any"
 RUN_DRY="no"
+RUN_CLEAN="no"
 
 show_help() {
-    printf "Usage: %s [-n] [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
+    printf "Usage: %s [-n] [-c] [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
     printf "  -n\t\t\tDry run\n"
+    printf "  -c\t\t\tClean build directory\n"
     printf "  -v VENDOR\t\tVendor name\n"
     printf "  -m MODEL\t\tModel name\n"
     printf "  -b BOARD\t\tBoard name\n"
@@ -28,17 +30,18 @@ show_help() {
 }
 
 show_usage() {
-    printf "Usage: %s [-n] [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
+    printf "Usage: %s [-n] [-c] [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
     exit 1
 }
 
-while getopts 'v:m:b:r:f:nh' opt; do
+while getopts 'v:m:b:r:f:nch' opt; do
     case "${opt}" in
         v) RUN_VENDOR="${OPTARG}" ;;
         m) RUN_MODEL="${OPTARG}" ;;
         b) RUN_BOARD="${OPTARG}" ;;
         r) RUN_BRANCH="${OPTARG}" ;;
         f) RUN_FLAVOR="${OPTARG}" ;;
+        c) RUN_CLEAN="yes" ;;
         n) RUN_DRY="yes" ;;
         h) show_help ;;
         *) show_usage ;;
@@ -101,4 +104,4 @@ for vendor in $(ls); do
         cd ..
     fi
 done
-rm -rf ${BUILD_DIR}
+test "${RUN_CLEAN}" = "yes" && rm -rf ${BUILD_DIR}
