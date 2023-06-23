@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# TODO: rewrite this in python, make it readable and maintainable.
+
 set -e
 
 BASE=${PWD}
