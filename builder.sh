@@ -30,6 +30,7 @@ while getopts 'v:m:b:r:f:' opt; do
         b) RUN_BOARD="${OPTARG}" ;;
         r) RUN_BRANCH="${OPTARG}" ;;
         f) RUN_FLAVOR="${OPTARG}" ;;
+        h) show_help ;;
         *) show_help ;;
     esac
 done
