@@ -10,7 +10,22 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        parent:
+          - Geeetech
+        model:
+          - A10
+          - A10M
+          - A10T
+          - A20
+          - A20M
+          - A20T
+          - A30
+          - A30M
+          - A30T
     uses: ./.github/workflows/build.yaml
     with:
       prefix: geeetech
-      parent: Geeetech
+      parent: ${{ matrix.parent }}
+      model: ${{ matrix.model }}
