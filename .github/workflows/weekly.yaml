@@ -17,3 +17,4 @@ jobs:
       prefix: ${{ matrix.vendor }}-weekly
       parent: ${{ matrix.vendor }}
       dryrun: false
+      cleanup: true
