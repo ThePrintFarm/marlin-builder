@@ -3,9 +3,9 @@
 This project consists of a re-usable workflow for Github Actions, and a set of configurations for Marlin 3d printer firmware. Currently the following vendors have at least 1 build with it's configuration
 managed here. I try to maintain a current `stock` firmware, as well as any standard customizations such as bltouch.
 
-- Creality Firmwares: [![Build Creality firmwares](https://github.com/fuzzy/marlin-builder/actions/workflows/creality.yaml/badge.svg)](https://github.com/fuzzy/marlin-builder/actions/workflows/creality.yaml)
-- Kinroon Firmwares: [![Build Kingroon Firmwares](https://github.com/fuzzy/marlin-builder/actions/workflows/kingroon.yaml/badge.svg)](https://github.com/fuzzy/marlin-builder/actions/workflows/kingroon.yaml)
-- Geeetech Firmwares: [![Build Geeetech Firmwares](https://github.com/fuzzy/marlin-builder/actions/workflows/geeetech.yaml/badge.svg)](https://github.com/fuzzy/marlin-builder/actions/workflows/geeetech.yaml)
+- Creality Firmwares: [![Build Creality Weeklies](https://github.com/fuzzy/marlin-builder/actions/workflows/creality-weekly.yaml/badge.svg)](https://github.com/fuzzy/marlin-builder/actions/workflows/creality-weekly.yaml)
+- Geeetech Firmwares: [![Build Geeetech Weeklies](https://github.com/fuzzy/marlin-builder/actions/workflows/geeetech-weekly.yaml/badge.svg)](https://github.com/fuzzy/marlin-builder/actions/workflows/geeetech-weekly.yaml)
+- Kinroon Firmwares: [![Build Kingroon Weeklies](https://github.com/fuzzy/marlin-builder/actions/workflows/kingroon-weekly.yaml/badge.svg)](https://github.com/fuzzy/marlin-builder/actions/workflows/kingroon-weekly.yaml)
 
 PR's are always welcome, as are isseues and comments.
 
