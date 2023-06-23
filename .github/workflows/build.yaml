@@ -38,6 +38,11 @@ on:
         required: false
         description: to dry run or not to dry run, that is a question
         default: true
+      cleanup:
+        type: boolean
+        required: false
+        description: do cleanups
+        default: false
 
 jobs:
   build-marlin-validation:
@@ -85,7 +90,7 @@ jobs:
         id: date
         run: echo "tag=$(date +%m%d%Y-%H%M%S)" >> "$GITHUB_OUTPUT"
       - name: Build all flavors
-        run: /bin/sh ./builder.sh -v ${{ inputs.parent }} -m ${{ inputs.model }} -b ${{ inputs.board }} -r ${{ inputs.branch }} -f ${{ inputs.flavor }}
+        run: /bin/sh ./builder.sh -v ${{ inputs.parent }} -m ${{ inputs.model }} -b ${{ inputs.board }} -r ${{ inputs.branch }} -f ${{ inputs.flavor }} ${{ inputs.cleanup == true && "-c" || "" }}
       - name: create tag
         id: tag
         uses: rickstaa/action-create-tag@v1
