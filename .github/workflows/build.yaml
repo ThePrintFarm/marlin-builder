@@ -34,7 +34,7 @@ on:
         type: string
         default: "any"
       dryrun:
-        type: bool
+        type: boolean
         required: false
         description: to dry run or not to dry run, that is a question
         default: true
