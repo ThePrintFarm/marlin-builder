@@ -21,7 +21,7 @@ for vendor in $(ls ${BASE}/configs/); do
                     for flavor in $(ls); do
                         build_obj=""
                         build_env=""
-                        build_out="${vendor}__${model}__${board}__${branch}__${flavor}"
+                        build_out="${vendor}__${model}__${board}__${branch}__${flavor}__$(date +%m%d%Y)"
                         trail="${BASE}/configs/${vendor}/${model}/${board}/${branch}/${flavor}"
                         echo "Building for: ${build_out}"
                         cd ${BUILD_DIR}
