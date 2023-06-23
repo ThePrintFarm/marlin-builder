@@ -40,7 +40,7 @@ on:
         default: true
 
 jobs:
-  build-marlin-validation:
+  validate-${{ inputs.parent }}-${{ inputs.model }}:
     runs-on: ubuntu-latest
     if: inputs.dryrun == true
     steps:
