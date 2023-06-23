@@ -10,3 +10,4 @@ jobs:
     with:
       prefix: kingroon-weekly
       parent: Kingroon
+      dryrun: false
