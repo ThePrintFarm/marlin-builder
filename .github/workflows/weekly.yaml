@@ -1,4 +1,4 @@
-name: Build Creality Weeklies
+name: Build Weekly Snapshots
 
 on:
   schedule:
