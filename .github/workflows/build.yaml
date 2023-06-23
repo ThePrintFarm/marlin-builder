@@ -40,8 +40,19 @@ on:
         default: true
 
 jobs:
-  build-marlin:
+  build-marlin-validation:
     runs-on: ubuntu-latest
+    if: inputs.dryrun == true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get current date
+        id: date
+        run: echo "tag=$(date +%m%d%Y-%H%M%S)" >> "$GITHUB_OUTPUT"
+      - name: Build all flavors
+        run: /bin/sh ./builder.sh -v ${{ inputs.parent }} -m ${{ inputs.model }} -b ${{ inputs.board }} -r ${{ inputs.branch }} -f ${{ inputs.flavor }}
+  build-marlin-weekly:
+    runs-on: ubuntu-latest
+    if: inputs.dryrun == false
     steps:
       - uses: actions/checkout@v3
       - name: Get current date
@@ -57,7 +68,6 @@ jobs:
           tag_exists_error: false
           force_push_tag: true
       - uses: marvinpinto/action-automatic-releases@latest
-        if: inputs.dryrun == false
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
