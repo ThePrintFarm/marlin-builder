@@ -14,9 +14,11 @@ RUN_MODEL="any"
 RUN_BOARD="any"
 RUN_BRANCH="any"
 RUN_FLAVOR="any"
+RUN_DRY="no"
 
 show_help() {
-    printf "Usage: %s [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
+    printf "Usage: %s [-n] [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
+    printf "  -n\t\t\tDry run\n"
     printf "  -v VENDOR\t\tVendor name\n"
     printf "  -m MODEL\t\tModel name\n"
     printf "  -b BOARD\t\tBoard name\n"
@@ -26,17 +28,18 @@ show_help() {
 }
 
 show_usage() {
-    printf "Usage: %s [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
+    printf "Usage: %s [-n] [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
     exit 1
 }
 
-while getopts 'v:m:b:r:f:h' opt; do
+while getopts 'v:m:b:r:f:nh' opt; do
     case "${opt}" in
         v) RUN_VENDOR="${OPTARG}" ;;
         m) RUN_MODEL="${OPTARG}" ;;
         b) RUN_BOARD="${OPTARG}" ;;
         r) RUN_BRANCH="${OPTARG}" ;;
         f) RUN_FLAVOR="${OPTARG}" ;;
+        n) RUN_DRY="yes" ;;
         h) show_help ;;
         *) show_usage ;;
     esac
@@ -80,8 +83,9 @@ for vendor in $(ls); do
                                             platformio run ${build_env} 2>&1 >/tmp/build.log && rm -f /tmp/build.log || cat /tmp/build.log
                                         fi
                                         echo "DEBUG: ${build_obj}"
-                                        mv -v ${build_obj} ${BASE}/${build_out}__$(basename ${build_obj})
-                                        platformio run ${build_env} -t clean
+                                        if test "${RUN_DRY}" = "no"; then
+                                            mv -v ${build_obj} ${BASE}/${build_out}__$(basename ${build_obj})
+                                        fi
                                         cd ${BASE}/configs/${vendor}/${model}/${board}/${branch}
                                     fi
                                 done
