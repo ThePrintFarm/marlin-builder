@@ -49,6 +49,7 @@ jobs:
         with:
           path: |
             ./marlin-build-dir
+            ~/.platformio
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
@@ -64,6 +65,7 @@ jobs:
         with:
           path: |
             ./marlin-build-dir
+            ~/.platformio
   build-marlin-weekly:
     runs-on: ubuntu-latest
     if: inputs.dryrun == false
@@ -73,6 +75,7 @@ jobs:
         with:
           path: |
             ./marlin-build-dir
+            ~/.platformio
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
@@ -102,3 +105,4 @@ jobs:
         with:
           path: |
             ./marlin-build-dir
+            ~/.platformio
