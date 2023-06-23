@@ -1,0 +1,19 @@
+name: Build Creality Weeklies
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        vendor:
+          - Creality
+          - Geeetech
+          - Kingroon
+    uses: ./.github/workflows/build.yaml
+    with:
+      prefix: ${{ matrix.vendor }}-weekly
+      parent: ${{ matrix.vendor }}
+      dryrun: false
