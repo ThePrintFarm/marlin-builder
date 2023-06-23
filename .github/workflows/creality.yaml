@@ -20,6 +20,7 @@ jobs:
           - Ender-2
           - Ender-3
     uses: ./.github/workflows/build.yaml
+    name: ${{ matrix.parent }}-${{ matrix.model }}
     with:
       prefix: creality
       parent: ${{ matrix.parent }}
