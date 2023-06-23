@@ -13,3 +13,5 @@ PR's are always welcome, as are isseues and comments.
 
 I have also added as a matter of pattern weekly scheduled builds for each vendor. This checks out the current Marlin source for each branch configured during build, so this will be a steady source of fresh
 firmwares.
+
+## Stuffs
