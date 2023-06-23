@@ -56,3 +56,4 @@ for vendor in $(ls ${BASE}/configs/); do
     fi
 done
 rm -rf ${BUILD_DIR}
+
