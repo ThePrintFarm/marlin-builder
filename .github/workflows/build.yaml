@@ -33,6 +33,11 @@ on:
         required: false
         type: string
         default: "any"
+      dryrun:
+        type: bool
+        required: false
+        description: to dry run or not to dry run, that is a question
+        default: true
 
 jobs:
   build-marlin:
@@ -52,6 +57,7 @@ jobs:
           tag_exists_error: false
           force_push_tag: true
       - uses: marvinpinto/action-automatic-releases@latest
+        if: inputs.dryrun == false
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: ${{ inputs.prefix }}-${{ steps.date.outputs.tag }}
