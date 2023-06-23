@@ -15,17 +15,22 @@ on:
         default: ""
       model:
         description: The top level (relative to configs/<parent>) directory to build.
-        required: true
+        required: false
         type: string
         default: ""
       board:
         description: The top level (relative to configs/<parent>/<model>) directory to build.
-        required: true
+        required: false
         type: string
         default: ""
       branch:
         description: The top level (relative to configs/<parent>/<model>/<board>) directory to build.
-        required: true
+        required: false
+        type: string
+        default: ""
+      flavor:
+        description: The top level (relative to configs/<parent>/<model>/<board>/<branch>) directory to build.
+        required: false
         type: string
         default: ""
 
@@ -38,7 +43,7 @@ jobs:
         id: date
         run: echo "tag=$(date +%m%d%Y-%H%M%S)" >> "$GITHUB_OUTPUT"
       - name: Build all flavors
-        run: /bin/sh ./builder.sh ${{ inputs.parent }} ${{ inputs.model }} ${{ inputs.board }} ${{ inputs.branch }}
+        run: /bin/sh ./builder.sh -p ${{ inputs.parent }} -m ${{ inputs.model }} -b ${{ inputs.board }} -r ${{ inputs.branch }} -f ${{ inputs.flavor }}
       - name: create tag
         id: tag
         uses: rickstaa/action-create-tag@v1
