@@ -23,7 +23,6 @@ for vendor in $(ls ${BASE}/configs/); do
                         build_env=""
                         build_out="${vendor}__${model}__${board}__${branch}__${flavor}__$(date +%m%d%Y-%H%M%S)"
                         trail="${BASE}/configs/${vendor}/${model}/${board}/${branch}/${flavor}"
-                        echo "Building for: ${build_out}"
                         cd ${BUILD_DIR}
                         git stash && git checkout ${branch} && git pull
                         if test -e ${trail}/platformio.ini; then
@@ -33,13 +32,14 @@ for vendor in $(ls ${BASE}/configs/); do
                         cp -v ${trail}/*.h ${BUILD_DIR}/Marlin/
                         test -e ${trail}/inputs && . ${trail}/inputs
                         test -d ${trail}/ini && cp -av ${trail}/ini/* ${BUILD_DIR}/ini/
+                        echo "DEBUG: ${build_out}"
                         if test -z "${build_obj}"; then
                             # this is kind of brittle
                             set -x
                             build_obj=$(platformio run ${build_env}|tee|grep -e '^Building .pio.*$'|awk '{print $2}')
                             set +x
                         else
-                            platformio run ${build_env}
+                            platformio run ${build_env} 2>&1 >/tmp/build.log && rm -f /tmp/build.log || cat /tmp/build.log
                         fi
                         echo "DEBUG: ${build_obj}"
                         mv -v ${build_obj} ${BASE}/${build_out}__$(basename ${build_obj})
