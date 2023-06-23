@@ -10,3 +10,4 @@ jobs:
     with:
       prefix: creality-weekly
       parent: Creality
+      dryrun: false
