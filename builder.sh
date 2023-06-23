@@ -105,3 +105,4 @@ for vendor in $(ls); do
     fi
 done
 test "${RUN_CLEAN}" = "yes" && rm -rf ${BUILD_DIR}
+exit 0
