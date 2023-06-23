@@ -4,7 +4,6 @@
 
 set -e
 
-echo "${@}"
 BASE=${PWD}
 MARLIN_REPO=https://github.com/MarlinFirmware/Marlin
 BUILD_DIR="${PWD}/marlin-build-dir"
@@ -18,12 +17,20 @@ RUN_FLAVOR="any"
 
 show_help() {
     printf "Usage: %s [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
+    printf "  -v VENDOR\t\tVendor name\n"
+    printf "  -m MODEL\t\tModel name\n"
+    printf "  -b BOARD\t\tBoard name\n"
+    printf "  -r BRANCH\t\tBranch name\n"
+    printf "  -f FLAVOR\t\tFlavor name\n"
+    exit 0
+}
+
+show_usage() {
+    printf "Usage: %s [-v VENDOR] [-m MODEL] [-b BOARD] [-r BRANCH] [-f FLAVOR]\n" "$(basename ${0})"
     exit 1
 }
 
-test ! -d ${BUILD_DIR} && git clone ${MARLIN_REPO} ${BUILD_DIR}
-
-while getopts 'v:m:b:r:f:' opt; do
+while getopts 'v:m:b:r:f:h' opt; do
     case "${opt}" in
         v) RUN_VENDOR="${OPTARG}" ;;
         m) RUN_MODEL="${OPTARG}" ;;
@@ -31,10 +38,11 @@ while getopts 'v:m:b:r:f:' opt; do
         r) RUN_BRANCH="${OPTARG}" ;;
         f) RUN_FLAVOR="${OPTARG}" ;;
         h) show_help ;;
-        *) show_help ;;
+        *) show_usage ;;
     esac
 done
 
+test ! -d ${BUILD_DIR} && git clone ${MARLIN_REPO} ${BUILD_DIR}
 cd ${BASE}/configs
 for vendor in $(ls); do
     if test "${RUN_VENDOR}" = "any" || test "${vendor}" = "${RUN_VENDOR}"; then
