@@ -12,27 +12,27 @@ on:
         description: The top level (relative to configs/) directory to build.
         required: true
         type: string
-        default: ""
+        default: "any"
       model:
         description: The top level (relative to configs/<parent>) directory to build.
         required: false
         type: string
-        default: ""
+        default: "any"
       board:
         description: The top level (relative to configs/<parent>/<model>) directory to build.
         required: false
         type: string
-        default: ""
+        default: "any"
       branch:
         description: The top level (relative to configs/<parent>/<model>/<board>) directory to build.
         required: false
         type: string
-        default: ""
+        default: "any"
       flavor:
         description: The top level (relative to configs/<parent>/<model>/<board>/<branch>) directory to build.
         required: false
         type: string
-        default: ""
+        default: "any"
 
 jobs:
   build-marlin:
