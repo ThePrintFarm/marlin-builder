@@ -31,3 +31,4 @@ The configuration files have been verified to match the original configuration, 
 ## Ender-2 specific changelog:
 
 * 2018/10/08 - Updated BED_MAXTEMP to 75 to match the original Creality Ender-2 Firmware (which is now open source)
+* 2023/07/21 - Workflow stuff happened
