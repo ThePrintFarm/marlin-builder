@@ -21,7 +21,7 @@ jobs:
         flavor:
           - bltouch
           - stock
-    uses: fuzzy/printer-firmware-actions/marlin.yaml@main
+    uses: fuzzy/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: ${{ matrix.board }}-${{ matrix.branch }}-${{ marix.flavor }}
     with:
       build_env: STM32F103RC_btt_USB
