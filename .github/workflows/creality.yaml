@@ -15,12 +15,9 @@ jobs:
       matrix:
         board:
           - btt-skr-mini-e3-v2
-          - oem_v422
         branch:
           - bugfix-2.1.x
-          - bugfix-2.0.x
         flavor:
-          - stock
           - bltouch
     uses: fuzzy/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: ${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}
