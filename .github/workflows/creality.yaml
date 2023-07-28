@@ -15,14 +15,17 @@ jobs:
       matrix:
         board:
           - btt-skr-mini-e3-v2
+          - oem_v422
         branch:
           - bugfix-2.1.x
+          - bugfix-2.0.x
         flavor:
+          - stock
           - bltouch
     uses: fuzzy/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: ${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}
     with:
       build_env: STM32F103RC_btt_USB
-      build_obj: Marlin/.pio/build/STM32F103RC_btt_USB/firmware.bin
+      build_obj: firmware.bin
       config_dir: configs/Creality/Ender-3/${{ matrix.board }}/${{ matrix.branch }}/${{ matrix.flavor }}
       prefix: creality
