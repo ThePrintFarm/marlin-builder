@@ -20,6 +20,7 @@ jobs:
       prefix: creality
       artifact_key: firmware-builder
   Creality-Ender3-SKRMiniV3-bugfix-2_0_x:
+    needs: Creality-Ender3-SKRMiniV3-bugfix-2_1_x
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: btt-skr-mini-e3-v2-bugfix-2.0.x-bltouch
     with:
@@ -29,6 +30,7 @@ jobs:
       prefix: creality
       artifact_key: firmware-builder
   Debug-job:
+    needs: Creality-Ender3-SKRMiniV3-bugfix-2_0_x
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
