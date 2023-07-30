@@ -42,7 +42,7 @@ jobs:
     with:
       build_env: ${{ matrix.environ }}
       build_obj: ${{ matrix.object }}
-      config_dir: configs/Creality/Ender-3/${{ matrix.board }}/${{ matrix.branch }}/${{ matrix.flavor }}
+      config_dir: ${{ format('configs/Creality/Ender-3/{0}/{1}/{2}', matrix.board, matrix.branch, matrix.flavor) }}
       prefix: creality
       artifact_key: firmware-builder
   Debug-job:
