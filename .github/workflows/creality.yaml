@@ -43,8 +43,16 @@ jobs:
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
       prefix: creality
       artifact_key: firmware-builder
-  Debug-job:
+  Creality-CR10-oem-bugfix-2_1_x-stock:
     needs: Creality-Ender3-oem_v422-bugfix-2_1_x-stock
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    name: oem-bugfix-2.1.x-stock
+    with:
+      config_dir: configs/Creality/CR-10_V3/oem/bugfix-2.1.x/stock
+      prefix: creality
+      artifact_key: firmware-builder
+  Debug-job:
+    needs: Creality-CR10-oem-bugfix-2_1_x-stock
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
