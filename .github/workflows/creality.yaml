@@ -11,6 +11,7 @@ on:
 
 jobs:
   get-current-date:
+    runs-on: ubuntu-latest
     outputs:
       date_tag: ${{ steps.date.outputs.date_tag }}
     steps:
