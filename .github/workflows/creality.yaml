@@ -34,40 +34,14 @@ jobs:
       - run: |
           echo "${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}"
           echo "${{ matrix.environ }} || ${{ matrix.object }}"
-
-  Creality-Ender3-SKRMiniV3-bugfix-2_1_x-bltouch:
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    name: btt-skr-mini-e3-v2-bugfix-2.1.x-bltouch
-    with:
-      build_env: STM32F103RC_btt_USB
-      config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/bltouch
-      prefix: creality
-      artifact_key: firmware-builder
-  Creality-Ender3-SKRMiniV3-bugfix-2_1_x-stock:
-    needs: Creality-Ender3-SKRMiniV3-bugfix-2_1_x-bltouch
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    name: btt-skr-mini-e3-v2-bugfix-2.1.x-stock
-    with:
-      build_env: STM32F103RC_btt_USB
-      config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/stock
-      prefix: creality
-      artifact_key: firmware-builder
-  Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch:
-    needs: Creality-Ender3-SKRMiniV3-bugfix-2_1_x-stock
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    name: oem_v422-bugfix-2.1.x-bltouch
-    with:
-      config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
-      prefix: creality
-      artifact_key: firmware-builder
-  Creality-Ender3-oem_v422-bugfix-2_1_x-stock:
-    needs: Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    name: oem_v422-bugfix-2.1.x-stock
-    with:
-      config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
-      prefix: creality
-      artifact_key: firmware-builder
+      - uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+        name: ${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}
+        with:
+          build_env: ${{ matrix.environ }}
+          build_obj: ${{ matrix.object }}
+          config_dir: configs/Creality/Ender-3/${{ matrix.board }}/${{ matrix.branch }}/${{ matrix.flavor }}
+          prefix: creality
+          artifact_key: firmware-builder
   Debug-job:
     needs: Creality-Ender3-oem_v422-bugfix-2_1_x-stock
     runs-on: ubuntu-latest
