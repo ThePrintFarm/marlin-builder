@@ -28,3 +28,13 @@ jobs:
       config_dir: configs/Creality/Ender-3/${{ matrix.board }}/${{ matrix.branch }}/${{ matrix.flavor }}
       prefix: creality
       artifact_key: firmware-builder
+  Debug-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/download-artifact@master
+        with:
+          name: firmware-builder
+          path: firmware-builder
+      - name: look at files
+        run: ls -lhR firmware-builder/
