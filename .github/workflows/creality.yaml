@@ -10,13 +10,6 @@ on:
       - .github/workflows/creality.yaml
 
 jobs:
-  get-current-date:
-    runs-on: ubuntu-latest
-    outputs:
-      date_tag: ${{ steps.date_tag.outputs.date_tag }}
-    steps:
-      - id: date_tag
-        run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
   Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
@@ -50,6 +43,13 @@ jobs:
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
       prefix: creality
       artifact_key: firmware-builder
+  get-current-date:
+    runs-on: ubuntu-latest
+    outputs:
+      date_tag: ${{ steps.date_tag.outputs.date_tag }}
+    steps:
+      - id: date_tag
+        run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
   Creality-CR10-oem-bugfix-2_1_x-stock:
     needs:
       - get-current-date
