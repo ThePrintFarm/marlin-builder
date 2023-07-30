@@ -10,27 +10,41 @@ on:
       - .github/workflows/creality.yaml
 
 jobs:
-  Creality-Ender3-SKRMiniV3-bugfix-2_1_x:
+  Creality-Ender3-SKRMiniV3-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: btt-skr-mini-e3-v2-bugfix-2.1.x-bltouch
     with:
       build_env: STM32F103RC_btt_USB
-      build_obj: firmware.bin
       config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/bltouch
       prefix: creality
       artifact_key: firmware-builder
-  Kingroon-KP3S_PRO-oem-bugfix_2_1_x-bltouch:
-    needs: Creality-Ender3-SKRMiniV3-bugfix-2_1_x
+  Creality-Ender3-SKRMiniV3-bugfix-2_1_x-stock:
+    needs: btt-skr-mini-e3-v2-bugfix-2.1.x-bltouch
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    name: oem-bugfix-2.1.x-bltouch
+    name: btt-skr-mini-e3-v2-bugfix-2.1.x-stock
     with:
-      build_env: mks_robin_nano_v1v2
-      build_obj: Robin_nano35.bin
-      config_dir: configs/Kingroon/KP3S-PRO/oem/bugfix-2.1.x/bltouch
-      prefix: kingroon
+      build_env: STM32F103RC_btt_USB
+      config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/stock
+      prefix: creality
+      artifact_key: firmware-builder
+  Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch:
+    needs: btt-skr-mini-e3-v2-bugfix-2.1.x-stock
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    name: oem_v422-bugfix-2.1.x-bltouch
+    with:
+      config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
+      prefix: creality
+      artifact_key: firmware-builder
+  Creality-Ender3-oem_v422-bugfix-2_1_x-stock:
+    needs: oem_v422-bugfix-2.1.x-bltouch
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    name: oem_v422-bugfix-2.1.x-stock
+    with:
+      config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
+      prefix: creality
       artifact_key: firmware-builder
   Debug-job:
-    needs: Kingroon-KP3S_PRO-oem-bugfix_2_1_x-bltouch
+    needs: oem_v422-bugfix-2.1.x-stock
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
