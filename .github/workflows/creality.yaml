@@ -22,7 +22,7 @@ jobs:
   Kingroon-KP3S_PRO-oem-bugfix_2_1_x-bltouch:
     needs: Creality-Ender3-SKRMiniV3-bugfix-2_1_x
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    name: btt-skr-mini-e3-v2-bugfix-2.0.x-bltouch
+    name: oem-bugfix-2.1.x-bltouch
     with:
       build_env: mks_robin_nano_v1v2
       build_obj: Robin_nano35.bin
