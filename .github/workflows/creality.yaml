@@ -42,7 +42,7 @@ jobs:
     name: oem_v422-bugfix-2.1.x-bltouch
     with:
       build_env: STM32F103RE_creality
-      build_obj: firmware-${{ get-current-date.outputs.date_tag }}.bin
+      build_obj: firmware-${{ needs.get-current-date.outputs.date_tag }}.bin
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
       prefix: creality
       artifact_key: firmware-builder
