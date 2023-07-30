@@ -17,7 +17,7 @@ jobs:
       matrix:
         board:
           - btt-skr-mini-e3-v2
-          #- oem_v422
+          - oem_v422
         branch:
           - bugfix-2.1.x
         flavor:
