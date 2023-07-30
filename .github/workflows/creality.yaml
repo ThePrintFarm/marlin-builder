@@ -10,6 +10,31 @@ on:
       - .github/workflows/creality.yaml
 
 jobs:
+  Build-Creality-Ender3-Firmwares:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        board:
+          - btt-skr-mini-e3-v2
+          - oem_v422
+        branch:
+          - bugfix-2.1.x
+        flavor:
+          - stock
+          - bltouch
+        include:
+          - environ: STM32F103RC_btt_USB
+            board: btt-skr-mini-e3-v2
+            object: firmware.bin
+          - environ: STM32F103RE_creality
+            board: oem_v422
+            object: firmware.bin
+    steps:
+      - run: |
+          echo "${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}"
+          echo "${{ matrix.environ }} || ${{ matrix.object }}"
+
   Creality-Ender3-SKRMiniV3-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: btt-skr-mini-e3-v2-bugfix-2.1.x-bltouch
