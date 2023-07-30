@@ -32,6 +32,7 @@ jobs:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: oem_v422-bugfix-2.1.x-bltouch
     with:
+      build_env: STM32F103RE_creality
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
       prefix: creality
       artifact_key: firmware-builder
@@ -40,6 +41,7 @@ jobs:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: oem_v422-bugfix-2.1.x-stock
     with:
+      build_env: STM32F103RE_creality
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
       prefix: creality
       artifact_key: firmware-builder
