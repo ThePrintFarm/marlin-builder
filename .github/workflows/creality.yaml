@@ -16,7 +16,7 @@ jobs:
       date_tag: ${{ steps.date.outputs.date_tag }}
     steps:
       - id: date_tag
-        run: echo "date_tag=$(date +%Y%m%d).bin" >> "$GITHUB_OUTPUT"
+        run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
   Creality-Ender3-SKRMiniV3-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: btt-skr-mini-e3-v2-bugfix-2.1.x-bltouch
