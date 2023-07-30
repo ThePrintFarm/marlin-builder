@@ -17,6 +17,7 @@ jobs:
           - btt-skr-mini-e3-v2
         branch:
           - bugfix-2.1.x
+          - bugfix-2.0.x
         flavor:
           - bltouch
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
