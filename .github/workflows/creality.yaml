@@ -19,18 +19,18 @@ jobs:
       config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/bltouch
       prefix: creality
       artifact_key: firmware-builder
-  Creality-Ender3-SKRMiniV3-bugfix-2_0_x:
+  Kingroon-KP3S_PRO-oem-bugfix_2_1_x-bltouch:
     needs: Creality-Ender3-SKRMiniV3-bugfix-2_1_x
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: btt-skr-mini-e3-v2-bugfix-2.0.x-bltouch
     with:
-      build_env: STM32F103RC_btt_USB
-      build_obj: firmware.bin
-      config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.0.x/bltouch
-      prefix: creality
+      build_env: mks_robin_nano_v1v2
+      build_obj: Robin_nano35.bin
+      config_dir: configs/Kingroon/KP3S-PRO/oem/bugfix-2.1.x/bltouch
+      prefix: kingroon
       artifact_key: firmware-builder
   Debug-job:
-    needs: Creality-Ender3-SKRMiniV3-bugfix-2_0_x
+    needs: Kingroon-KP3S_PRO-oem-bugfix_2_1_x-bltouch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
