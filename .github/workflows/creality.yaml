@@ -30,18 +30,14 @@ jobs:
           - environ: STM32F103RE_creality
             board: oem_v422
             object: firmware.bin
-    steps:
-      - run: |
-          echo "${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}"
-          echo "${{ matrix.environ }} || ${{ matrix.object }}"
-      - uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-        name: ${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}
-        with:
-          build_env: ${{ matrix.environ }}
-          build_obj: ${{ matrix.object }}
-          config_dir: configs/Creality/Ender-3/${{ matrix.board }}/${{ matrix.branch }}/${{ matrix.flavor }}
-          prefix: creality
-          artifact_key: firmware-builder
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    name: ${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}
+    with:
+      build_env: ${{ matrix.environ }}
+      build_obj: ${{ matrix.object }}
+      config_dir: configs/Creality/Ender-3/${{ matrix.board }}/${{ matrix.branch }}/${{ matrix.flavor }}
+      prefix: creality
+      artifact_key: firmware-builder
   Debug-job:
     needs: Creality-Ender3-oem_v422-bugfix-2_1_x-stock
     runs-on: ubuntu-latest
