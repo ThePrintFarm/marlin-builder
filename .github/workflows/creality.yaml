@@ -10,7 +10,7 @@ on:
       - .github/workflows/creality.yaml
 
 jobs:
-  Creality-Ender3-SKRMiniV3-bugfix-2.1.x:
+  Creality-Ender3-SKRMiniV3-bugfix-2_1_x:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: btt-skr-mini-e3-v2-bugfix-2.1.x-bltouch
     with:
@@ -19,7 +19,7 @@ jobs:
       config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/bltouch
       prefix: creality
       artifact_key: firmware-builder
-  Creality-Ender3-SKRMiniV3-bugfix-2.0.x:
+  Creality-Ender3-SKRMiniV3-bugfix-2_0_x:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: btt-skr-mini-e3-v2-bugfix-2.0.x-bltouch
     with:
