@@ -19,7 +19,7 @@ jobs:
           - bugfix-2.1.x
         flavor:
           - bltouch
-    uses: fuzzy/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     name: ${{ matrix.board }}-${{ matrix.branch }}-${{ matrix.flavor }}
     with:
       build_env: STM32F103RC_btt_USB
