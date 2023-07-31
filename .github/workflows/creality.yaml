@@ -16,7 +16,8 @@ jobs:
       date_tag: ${{ steps.date_tag.outputs.date_tag }}
     steps:
       - id: date_tag
-        run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
+        run: echo "date_tag=$(date +%Y%m%d-%H%M%S)" >> "$GITHUB_OUTPUT"
+  # Ender3 with the BTT SKR Mini V2
   Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
@@ -32,6 +33,7 @@ jobs:
       config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/stock
       prefix: creality
       artifact_key: firmware-builder
+  # Ender3 with the v422 version of the OEM board
   Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch:
     needs:
       - get-current-date
