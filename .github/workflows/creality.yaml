@@ -49,7 +49,7 @@ jobs:
       build_env: STM32F103RE_creality
       build_obj: firmware-${{ needs.get-current-date.outputs.date_tag }}.bin
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
-      ini_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/ini
+      ini_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch/ini
       prefix: creality
       artifact_key: firmware-builder
   Creality-Ender3-oem_v422-bugfix-2_1_x-stock:
@@ -61,6 +61,7 @@ jobs:
       build_env: STM32F103RE_creality
       build_obj: firmware-${{ needs.get-current-date.outputs.date_tag }}.bin
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
+      ini_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock/ini
       prefix: creality
       artifact_key: firmware-builder
   Creality-CR10-oem-bugfix-2_1_x-stock:
