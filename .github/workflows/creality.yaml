@@ -1,6 +1,13 @@
 name: Build Creality firmwares
 
 on:
+  # Do weekly builds
+  schedule:
+    - cron: "0 0 * * 0"
+  # TODO: check the event type to not publish artifacts
+  #       if we're running because of a pull request
+
+  # Build on pushes to the main branch (PR has been merged)
   push:
     branches:
       - "main"
