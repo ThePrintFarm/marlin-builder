@@ -28,6 +28,7 @@ jobs:
   Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
+      flavor: bltouch
       build_env: STM32F103RC_btt_USB
       config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/bltouch
       prefix: creality
@@ -46,6 +47,7 @@ jobs:
       - get-current-date
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
+      flavor: bltouch
       build_env: STM32F103RE_creality
       build_obj: firmware-${{ needs.get-current-date.outputs.date_tag }}.bin
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
