@@ -44,7 +44,6 @@ jobs:
   Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch:
     needs:
       - get-current-date
-      - Creality-Ender3-SKRMiniV2-bugfix-2_1_x-stock
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
       build_env: STM32F103RE_creality
@@ -73,7 +72,9 @@ jobs:
       prefix: creality
       artifact_key: firmware-builder
   Debug-job:
-    needs: Creality-CR10-oem-bugfix-2_1_x-stock
+    needs:
+      - Creality-Ender3-SKRMiniV2-bugfix-2_1_x-stock
+      - Creality-CR10-oem-bugfix-2_1_x-stock
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
