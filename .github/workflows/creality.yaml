@@ -33,7 +33,9 @@ jobs:
         with:
           name: firmware-builder
           path: firmware-builder
-      # and releases on tag events (which aren't triggered yet)
+      - name: Show artifacts
+        run: ls -lh firmware-builder/
+      # release on tag events
       - uses: marvinpinto/action-automatic-releases@latest
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         with:
