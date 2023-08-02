@@ -43,7 +43,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: latest
           prerelease: true
-          title: Creality Firmwares Weekly
+          title: Creality Firmwares Weekly ${{ github.ref_name }}
           files: |
             firmware-builder/*
       # release on tag events
@@ -53,6 +53,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: release
           prerelease: false
-          title: Creality Firmwares
+          title: Creality Firmwares ${{ github.ref_name }}
           files: |
             firmware-builder/*

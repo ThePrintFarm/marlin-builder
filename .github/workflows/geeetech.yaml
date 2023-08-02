@@ -40,7 +40,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: latest
           prerelease: true
-          title: Geeetech Firmwares Weekly
+          title: Geeetech Firmwares Weekly ${{ github.ref_name }}
           files: |
             firmware-builder/*
       # release on tag events
@@ -50,6 +50,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: release
           prerelease: false
-          title: Geeetech Firmwares
+          title: Geeetech Firmwares ${{ github.ref_name }}
           files: |
             firmware-builder/*
