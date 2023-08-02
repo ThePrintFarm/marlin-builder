@@ -19,6 +19,7 @@ jobs:
       build_env: STM32F103RE_creality
       flavor: stock
       output_obj: Creality_CR30_OEM_bugfix-2.1.x_stock.bin
+      config_dir: configs/Creality/CR-30_PrintMill/oem/bugfix-2.1.x/stock
       ini_dir: configs/Creality/CR-30_PrintMill/oem/bugfix-2.1.x/stock/ini
       prefix: creality
       artifact_key: firmware-builder
