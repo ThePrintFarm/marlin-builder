@@ -9,7 +9,7 @@ on:
     paths:
       - builder.sh
       - configs/Creality/**
-      - .github/workflows/creality.yaml
+      - .github/workflows/creality*yaml
 
 jobs:
   build-ender3-firmwares:
