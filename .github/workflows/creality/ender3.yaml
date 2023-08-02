@@ -3,7 +3,8 @@ name: Ender3 Firmwares
 on:
   - workflow_call
 
-# Ender3 with the BTT SKR Mini V2
+jobs:
+  # Ender3 with the BTT SKR Mini V2
   Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
