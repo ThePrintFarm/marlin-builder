@@ -4,11 +4,10 @@ on:
   # Do weekly builds
   schedule:
     - cron: "0 0 * * 0"
-  # TODO: check the event type to not publish artifacts
-  #       if we're running because of a pull request
-
   # Build on pushes to the main branch (PR has been merged)
   push:
+    tags:
+      - v*
     branches:
       - "main"
     paths:
@@ -19,6 +18,7 @@ on:
 jobs:
   build-ender3-firmwares:
     uses: ./.github/workflows/creality-ender3.yaml
+
   # CR-10 builds
   Creality-CR10-oem-bugfix-2_1_x-stock:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
