@@ -11,6 +11,6 @@ jobs:
       prefix: geeetech
       artifact_key: firmware-builder
       build_obj: firmware.hex
-      build_env: mega2650
+      build_env: mega2560
       config_dir: configs/Geeetech/A10/oem/bugfix-2.1.x/stock
       output_obj: Geeetech_A10_OEM_bugfix-2.1.x_stock.hex
