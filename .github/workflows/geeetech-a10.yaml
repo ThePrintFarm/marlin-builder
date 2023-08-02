@@ -1,0 +1,16 @@
+name: Build A10* Firmwares
+
+on:
+  - workflow_call
+
+jobs:
+  Geeetech-A10-bugfix-2.1.x-stock:
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    with:
+      flavor: stock
+      prefix: geeetech
+      artifact_key: firmware-builder
+      build_obj: firmware.hex
+      build_env: mega2650
+      config_dir: configs/Geeetech/A10/oem/bugfix-2.1.x/stock
+      output_obj: Geeetech_A10_OEM_bugfix-2.1.x_stock.hex
