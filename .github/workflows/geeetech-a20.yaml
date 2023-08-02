@@ -9,29 +9,27 @@ jobs:
     with:
       flavor: stock
       prefix: geeetech
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}
       build_obj: firmware.hex
       build_env: mega2560
       config_dir: configs/Geeetech/A20/oem/bugfix-2.1.x/stock
       output_obj: Geeetech_A20_OEM_bugfix-2.1.x_stock.hex
   Geeetech-A20M-bugfix-2_1_x-stock:
-    needs: Geeetech-A20-bugfix-2_1_x-stock
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
       flavor: stock
       prefix: geeetech
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}
       build_obj: firmware.hex
       build_env: mega2560
       config_dir: configs/Geeetech/A20M/oem/bugfix-2.1.x/stock
       output_obj: Geeetech_A20M_OEM_bugfix-2.1.x_stock.hex
   Geeetech-A20T-bugfix-2_1_x-stock:
-    needs: Geeetech-A20M-bugfix-2_1_x-stock
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
       flavor: stock
       prefix: geeetech
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}
       build_obj: firmware.hex
       build_env: mega2560
       config_dir: configs/Geeetech/A20T/oem/bugfix-2.1.x/stock
