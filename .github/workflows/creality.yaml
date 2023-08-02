@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/download-artifact@master
         with:
-          name: firmware-builder
+          name: firmware-builder-${{ github.ref_name }}
           path: firmware-builder
       - name: Show artifacts
         run: ls -lh firmware-builder/

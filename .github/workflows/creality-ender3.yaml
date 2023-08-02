@@ -20,7 +20,7 @@ jobs:
       config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/bltouch
       prefix: creality
       output_obj: Creality_Ender3_BTT_SRKMini_e3_v2_bugfix-2.1.x_bltouch.bin
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}
   Creality-Ender3-SKRMiniV2-bugfix-2_1_x-stock:
     needs: Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
@@ -29,7 +29,7 @@ jobs:
       output_obj: Creality_Ender3_BTT_SRKMini_e3_v2_bugfix-2.1.x_stock.bin
       config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/stock
       prefix: creality
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}
   # Ender3 with the v422 version of the OEM board
   Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch:
     needs:
@@ -43,7 +43,7 @@ jobs:
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
       ini_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch/ini
       prefix: creality
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}
   Creality-Ender3-oem_v422-bugfix-2_1_x-stock:
     needs:
       - get-current-date
@@ -56,4 +56,4 @@ jobs:
       config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
       ini_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock/ini
       prefix: creality
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}

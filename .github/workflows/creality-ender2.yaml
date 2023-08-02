@@ -13,4 +13,4 @@ jobs:
       prefix: creality
       build_obj: firmware.hex
       output_obj: Creality_Ender2_OEM_bugfix-2.1.x_stock.hex
-      artifact_key: firmware-builder
+      artifact_key: firmware-builder-${{ github.ref_name }}
