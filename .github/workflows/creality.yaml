@@ -37,8 +37,7 @@ jobs:
       artifact_key: firmware-builder
   Debug-job:
     needs:
-      - Creality-Ender3-SKRMiniV2-bugfix-2_1_x-stock
-      - Creality-Ender3-oem_v422-bugfix-2_1_x-stock
+      - build-ender3-firmwares
       - Creality-CR10-oem-bugfix-2_1_x-stock
     runs-on: ubuntu-latest
     steps:
