@@ -13,6 +13,7 @@ jobs:
         run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
   # CR-30 builds
   Creality-CR30-oem-bugfix-2_1_x-stock:
+    needs: get-current-date
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
     with:
       build_obj: firmware-${{ needs.get-current-date.outputs.date_tag }}.bin
