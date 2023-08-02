@@ -1,0 +1,15 @@
+name: CR10 Firmwares
+
+on:
+  - workflow_call
+
+jobs:
+  # CR-10 builds
+  Creality-CR10-oem-bugfix-2_1_x-stock:
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    with:
+      build_obj: firmware.hex
+      output_obj: Creality_CR-10_V3_OEM_bugfix-2.1.x_stock.bin
+      config_dir: configs/Creality/CR-10_V3/oem/bugfix-2.1.x/stock
+      prefix: creality
+      artifact_key: firmware-builder
