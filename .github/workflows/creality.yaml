@@ -25,7 +25,7 @@ jobs:
       - id: date_tag
         run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
   build-ender3-firmwares:
-    uses: .github/workflows/creality-ender3.yaml@latest
+    uses: ./.github/workflows/creality-ender3.yaml@latest
   # CR-10 builds
   Creality-CR10-oem-bugfix-2_1_x-stock:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
