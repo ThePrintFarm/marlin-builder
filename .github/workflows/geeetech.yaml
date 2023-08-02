@@ -17,10 +17,13 @@ jobs:
     uses: ./.github/workflows/geeetech-a10.yaml
   build-a20-firmwares:
     uses: ./.github/workflows/geeetech-a20.yaml
+  build-a30-firmwares:
+    uses: ./.github/workflows/geeetech-a30.yaml
   Debug-job:
     needs:
       - build-a10-firmwares
       - build-a20-firmwares
+      - build-a30-firmwares
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
