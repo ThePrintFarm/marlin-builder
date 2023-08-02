@@ -24,52 +24,8 @@ jobs:
     steps:
       - id: date_tag
         run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
-  # Ender3 with the BTT SKR Mini V2
-  Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch:
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    with:
-      flavor: bltouch
-      build_env: STM32F103RC_btt_USB
-      config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/bltouch
-      prefix: creality
-      output_obj: Creality_Ender3_BTT_SRKMini_e3_v2_bugfix-2.1.x_bltouch.bin
-      artifact_key: firmware-builder
-  Creality-Ender3-SKRMiniV2-bugfix-2_1_x-stock:
-    needs: Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    with:
-      build_env: STM32F103RC_btt_USB
-      output_obj: Creality_Ender3_BTT_SRKMini_e3_v2_bugfix-2.1.x_stock.bin
-      config_dir: configs/Creality/Ender-3/btt-skr-mini-e3-v2/bugfix-2.1.x/stock
-      prefix: creality
-      artifact_key: firmware-builder
-  # Ender3 with the v422 version of the OEM board
-  Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch:
-    needs:
-      - get-current-date
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    with:
-      flavor: bltouch
-      build_env: STM32F103RE_creality
-      build_obj: firmware-${{ needs.get-current-date.outputs.date_tag }}.bin
-      output_obj: Creality_Ender3_OEM_v422_bugfix-2.1.x_bltouch.bin
-      config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch
-      ini_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/bltouch/ini
-      prefix: creality
-      artifact_key: firmware-builder
-  Creality-Ender3-oem_v422-bugfix-2_1_x-stock:
-    needs:
-      - get-current-date
-      - Creality-Ender3-oem_v422-bugfix-2_1_x-bltouch
-    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
-    with:
-      build_env: STM32F103RE_creality
-      build_obj: firmware-${{ needs.get-current-date.outputs.date_tag }}.bin
-      output_obj: Creality_Ender3_OEM_v422_bugfix-2.1.x_stock.bin
-      config_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock
-      ini_dir: configs/Creality/Ender-3/oem_v422/bugfix-2.1.x/stock/ini
-      prefix: creality
-      artifact_key: firmware-builder
+  build-ender3-firmwares:
+    uses: .github/workflows/creality/ender3.yaml
   # CR-10 builds
   Creality-CR10-oem-bugfix-2_1_x-stock:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
