@@ -17,13 +17,6 @@ on:
       - .github/workflows/creality.yaml
 
 jobs:
-  get-current-date:
-    runs-on: ubuntu-latest
-    outputs:
-      date_tag: ${{ steps.date_tag.outputs.date_tag }}
-    steps:
-      - id: date_tag
-        run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
   build-ender3-firmwares:
     uses: ./.github/workflows/creality-ender3.yaml
   # CR-10 builds

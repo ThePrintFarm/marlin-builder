@@ -4,6 +4,13 @@ on:
   - workflow_call
 
 jobs:
+  get-current-date:
+    runs-on: ubuntu-latest
+    outputs:
+      date_tag: ${{ steps.date_tag.outputs.date_tag }}
+    steps:
+      - id: date_tag
+        run: echo "date_tag=$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
   # Ender3 with the BTT SKR Mini V2
   Creality-Ender3-SKRMiniV2-bugfix-2_1_x-bltouch:
     uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
