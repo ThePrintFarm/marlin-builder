@@ -12,6 +12,8 @@ on:
       - .github/workflows/creality*yaml
 
 jobs:
+  build-ender2-firmwares:
+    uses: ./.github/workflows/creality-ender2.yaml
   build-ender3-firmwares:
     uses: ./.github/workflows/creality-ender3.yaml
   build-cr30-firmwares:
@@ -20,9 +22,10 @@ jobs:
     uses: ./.github/workflows/creality-cr10.yaml
   Debug-job:
     needs:
-      - build-ender3-firmwares
-      - build-cr30-firmwares
       - build-cr10-firmwares
+      - build-cr30-firmwares
+      - build-ender2-firmwares
+      - build-ender3-firmwares
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master

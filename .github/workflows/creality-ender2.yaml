@@ -1,0 +1,16 @@
+name: Ender2 Firmwares
+
+on:
+  - workflow_call
+
+jobs:
+  Creality-Ender2-OEM-bugfix-2_1_x-stock:
+    uses: thePrintFarm/printer-firmware-actions/.github/workflows/marlin.yaml@main
+    with:
+      flavor: stock
+      build_env: melzi_optiboot_optimized
+      config_dir: configs/Creality/Ender-2/oem/bugfix-2.1.x/stock
+      prefix: creality
+      build_obj: firmware.hex
+      output_obj: Creality_Ender2_OEM_bugfix-2.1.x_stock.hex
+      artifact_key: firmware-builder
